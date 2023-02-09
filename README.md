@@ -1,7 +1,7 @@
 ## USER MANUAL
 
 ```
-git clone https://github.com/cangkir13/perpustakaan
+git clone https://github.com/umar-link/perpustakaan
 ```
 ```
 cp .env.example .env
