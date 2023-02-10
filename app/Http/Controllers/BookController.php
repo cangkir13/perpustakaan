@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class BookController extends Controller
 {
@@ -25,7 +27,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('book/create');
     }
 
     /**
@@ -36,7 +38,18 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string'],
+            'author' => ['required', 'string'],
+            // 'author' => ['required', 'string'],
+        ]);
+
+        Book::create([
+            'title' => $request->title,
+            'author' => $request->author
+        ]);
+
+        return redirect('book');
     }
 
     /**
@@ -58,7 +71,9 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('book/edit', [
+            'book' => $book,
+        ]);
     }
 
     /**
@@ -70,7 +85,17 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string'],
+            'author' => ['required', 'string'],
+            // 'author' => ['required', 'string'],
+        ]);
+
+
+        $book->update([
+            'title' => $request->title
+        ]);
+        return Redirect::route('book.index')->with('category');
     }
 
     /**
