@@ -12,28 +12,31 @@
                     <x-primary-button class="mb-4">
                         <a href="book/create">{{ __('create new book') }}</a>
                     </x-primary-button>
+
                     @isset($books)
-                        <table class="border-collapse border border-slate-400">
-                            <thead>
-                                <tr>
-                                    <th class="border border-slate-300 ">Title</th>
-                                    <th class="border border-slate-300">Author</th>
-                                    <th class="border border-slate-300">Description</th>
-                                    <th class="border border-slate-300">Category</th>
-                                    <th class="border border-slate-300">Stock</th>
-                                    <th class="border border-slate-300">Action</th>
-                                </tr>
+                        <table class="table-auto w-full text-left">
+                            <thead class="bg-teal-400 text-white">
+                                <tr class="border-b">
+                                    <th class="px-4 py-2 bg-gray-800 text-white font-bold uppercase text-sm">Id</th>
+                                    <th class="px-4 py-2 bg-gray-800 text-white font-bold uppercase text-sm">Title</th>
+                                    <th class="px-4 py-2 bg-gray-800 text-white font-bold uppercase text-sm">Author</th>
+                                    <th class="px-4 py-2 bg-gray-800 text-white font-bold uppercase text-sm">Description</th>
+                                    <th class="px-4 py-2 bg-gray-800 text-white font-bold uppercase text-sm">Category</th>
+                                    <th class="px-4 py-2 bg-gray-800 text-white font-bold uppercase text-sm">Stock</th>
+                                    <th class="px-4 py-2 bg-gray-800 text-white font-bold uppercase text-sm">Action</th>
+                                  </tr>
                             </thead>
                             @foreach($books as $book)
                                 <tbody>
-                                    <tr>
-                                        <td class="border border-slate-300">{{$book->title}}</td>
-                                        <td class="border border-slate-300">{{$book->author}}</td>
-                                        <td class="border border-slate-300">{{$book->description}}</td>
-                                        <td class="border border-slate-300">{{$book->category->name}}</td>
-                                        <td class="border border-slate-300">{{$book->stock}}</td>
-                                        <td class="border border-slate-300">
-                                            <a href="book/{{$book->id}}/edit">Edit</a>
+                                    <tr class="bg-slate-500">
+                                        <td class="border px-4 py-2">{{$book->id}}</td>
+                                        <td class="border px-4 py-2">{{$book->title}}</td>
+                                        <td class="border px-4 py-2">{{$book->author}}</td>
+                                        <td class="border px-4 py-2">{{$book->description}}</td>
+                                        <td class="border px-4 py-2">{{$book->category->name}}</td>
+                                        <td class="border px-4 py-2">{{$book->stock}}</td>
+                                        <td class="border px-4 py-2">
+                                            <a href="book/{{$book->id}}/edit" class="bg-gray-400 text-black font-bold py-2 px-4 rounded border border-black">Edit</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -45,3 +48,32 @@
         </div>
     </div>
 </x-app-layout>
+
+<style>
+.bg-gray-400 {
+        background-color: #E2E8F0;
+    }
+    .text-black {
+        color: #22292F;
+    }
+    .font-bold {
+        font-weight: bold;
+    }
+    .py-2 {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .rounded {
+        border-radius: 0.25rem;
+    }
+    .border {
+        border-width: 1px;
+    }
+    .border-black {
+        border-color: #22292F;
+    }
+</style>

@@ -3,12 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Providers\RouteServiceProvider;
+use App\Repositories\Book\BookInterface;
+use App\Repositories\Category\CategoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class BookController extends Controller
 {
+
+    private $bookRepository;
+    private $categoryRepository;
+
+    public function __construct(BookInterface $bookRepository, CategoryInterface $categoryRepository)
+    {
+        $this->bookRepository = $bookRepository;
+        $this->categoryRepository = $categoryRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +26,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::with('category')->get();
+        $books = $this->bookRepository->GetAll();
         return view('book/index', ['books' => $books]);
     }
 
@@ -27,7 +37,10 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('book/create');
+        $category = $this->categoryRepository->GetList();
+        return view('book/create', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -44,10 +57,9 @@ class BookController extends Controller
             // 'author' => ['required', 'string'],
         ]);
 
-        Book::create([
-            'title' => $request->title,
-            'author' => $request->author
-        ]);
+        // dd($request->all());
+
+        $this->bookRepository->Create($request->all());
 
         return redirect('book');
     }

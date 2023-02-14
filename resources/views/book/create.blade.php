@@ -22,10 +22,21 @@
                             <x-text-input id="author" class="block mt-1 w-full" type="text" name="author" :value="old('author')" required autofocus autocomplete="author" />
                             <x-input-error :messages="$errors->get('author')" class="mt-2" />
                         </div>
+                        <div>
+                            <x-input-label for="id_category" :value="__('ID Category')" />
+                            <select name="id_category" class="block w-full bg-white border border-gray-400 hover:border-gray-500 rounded shadow my-12 leading-tight focus:outline-none ">
+                                @foreach ($category as $option)
+                                  <option value="{{ $option->id }}">{{ $option->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="flex items-center ">
                             <x-primary-button >
                                 {{ __('Submit') }}
                             </x-primary-button>
+                            <a href="/book" class="ml-4 bg-gray-900 text-white font-bold py-1 px-4 rounded" type="button">
+                                Back Here
+                            </a>
                         </div>
                     </form>
                 </div>
