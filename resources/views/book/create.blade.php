@@ -23,6 +23,11 @@
                             <x-input-error :messages="$errors->get('author')" class="mt-2" />
                         </div>
                         <div>
+                            <x-input-label for="description" :value="__('Description')" />
+                            <x-text-input id="description" class="block mt-1 w-full" type="text" name="description" :value="old('description')" required autofocus autocomplete="description" />
+                            <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                        </div>
+                        <div>
                             <x-input-label for="id_category" :value="__('ID Category')" />
                             <select name="id_category" class="block w-full bg-white border border-gray-400 hover:border-gray-500 rounded shadow my-12 leading-tight focus:outline-none ">
                                 @foreach ($category as $option)
