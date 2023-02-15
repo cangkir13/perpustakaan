@@ -36,7 +36,8 @@
                                         <td class="border px-4 py-2">{{$book->category->name}}</td>
                                         <td class="border px-4 py-2">{{$book->stock}}</td>
                                         <td class="border px-4 py-2">
-                                            <a href="book/{{$book->id}}/edit" class="bg-gray-400 text-black font-bold py-2 px-4 rounded border border-black">Edit</a>
+                                            <a href="book/{{$book->id}}/edit" class="bg-gray-400 text-black font-bold py-1 px-1 rounded border border-black">Edit</a>
+                                            <a href="book/{{$book->id}}" class="bg-gray-400 text-black font-bold py-1 px-1 rounded border border-black">SHow</a>
                                         </td>
                                     </tr>
                                 </tbody>

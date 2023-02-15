@@ -72,7 +72,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return response($book, 200)->header('Content-Type', 'application/json');
     }
 
     /**
