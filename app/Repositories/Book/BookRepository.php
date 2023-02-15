@@ -13,8 +13,18 @@ class BookRepository implements BookInterface
         return Book::with('category')->get();
     }
 
-    public function Create(array $reqeust)
+    public function Create(array $request)
     {
-        return Book::Create($reqeust);
+        return Book::Create($request);
+    }
+
+    public function Update(int $id, array $request)
+    {
+        return Book::where('id', $id)->update($request);
+    }
+
+    public function Delete(int $id)
+    {
+        return Book::where('id', $id)->delete();
     }
 }

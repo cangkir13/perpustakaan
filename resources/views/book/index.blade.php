@@ -35,9 +35,14 @@
                                         <td class="border px-4 py-2">{{$book->description}}</td>
                                         <td class="border px-4 py-2">{{$book->category->name}}</td>
                                         <td class="border px-4 py-2">{{$book->stock}}</td>
-                                        <td class="border px-4 py-2">
+                                        <td class="border px-6 py-2 text-center">
                                             <a href="book/{{$book->id}}/edit" class="bg-gray-400 text-black font-bold py-1 px-1 rounded border border-black">Edit</a>
-                                            <a href="book/{{$book->id}}" class="bg-gray-400 text-black font-bold py-1 px-1 rounded border border-black">SHow</a>
+                                            <a href="book/{{$book->id}}" class="bg-gray-400 text-black font-bold py-1 px-1 rounded border border-black pr-4">SHow</a>
+                                            <form method="POST" action="{{ route('book.destroy', $book->id) }}">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="bg-gray-400 text-black font-bold py-1 px-3 rounded border border-black">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 </tbody>

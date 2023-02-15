@@ -85,6 +85,7 @@ class BookController extends Controller
     {
         return view('book/edit', [
             'book' => $book,
+            'category' => $this->categoryRepository->GetList()
         ]);
     }
 
@@ -100,13 +101,14 @@ class BookController extends Controller
         $request->validate([
             'title' => ['required', 'string'],
             'author' => ['required', 'string'],
-            // 'author' => ['required', 'string'],
         ]);
 
-
-        $book->update([
-            'title' => $request->title
+        $update = $this->bookRepository->Update($book->id, [
+            'author' => $request->author,
+            'title' => $request->title,
+            'id_category' => $request->id_category
         ]);
+
         return Redirect::route('book.index')->with('category');
     }
 
@@ -118,6 +120,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $this->bookRepository->Delete($book->id);
+        return Redirect::route('book.index')->with('category');
     }
 }
